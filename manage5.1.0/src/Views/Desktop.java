@@ -1,0 +1,1472 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Views;
+
+import App.Aplicativo;
+import App.Criptografar;
+import br.com.Cadastro.PosteGreJPA.Funcionario;
+import br.com.Cadastro.PosteGreJPA.Funcionario_;
+import br.com.Comprovante_end.Comprovante_end;
+import br.com.DomainMode.PostGresJPA.LoginSenha;
+import br.com.FunçõesTeste.TestesFuncionais;
+import br.com.Produtos.Produtos;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
+
+/**
+ *
+ * @author leandrocnb
+ */
+public class Desktop extends javax.swing.JFrame {
+
+    /**
+     * Creates new form Desktop
+     */
+    public Desktop() {
+        initComponents();
+        
+        
+    }
+    
+    //Método para atualizar Funcionário
+    public void atuFuncionario(Integer id){
+        Funcionario func = new Funcionario();
+        Aplicativo app = new Aplicativo();
+        func = app.buscaFunc(id);
+        
+    }
+    
+    //Método para atualizar Produto
+    public void atuProduto(Integer id){
+        Produtos prod = new Produtos();
+        Aplicativo app = new Aplicativo();
+        prod = app.buscaProd(id);
+    }
+    
+    //Método para carregar tabela Produtos
+    public void carregaTabelaProduto(){
+        DefaultTableModel modelo = (DefaultTableModel) jTableProdutos.getModel();
+        modelo.setNumRows(0);
+        
+        jTableProdutos.getColumnModel().getColumn(0).setPreferredWidth(20);
+        jTableProdutos.getColumnModel().getColumn(1).setPreferredWidth(80);
+        jTableProdutos.getColumnModel().getColumn(2).setPreferredWidth(20);
+        jTableProdutos.getColumnModel().getColumn(3).setPreferredWidth(20);
+
+        Aplicativo app = new Aplicativo();
+        
+        app.selectProduto().forEach((l) -> {
+            modelo.addRow(new Object[]{
+                
+                l.getIdProduto(),
+                l.getNome(),
+                l.getQtd(),
+                l.getPreco()
+                
+            });
+        });
+    }
+    
+    //Método para carregar tabela Funcionários
+    public void carregaTabelaFuncionario(){
+        DefaultTableModel modelo = (DefaultTableModel) jTableFuncionario.getModel();
+        modelo.setNumRows(0);
+        
+        jTableFuncionario.getColumnModel().getColumn(0).setPreferredWidth(20);
+        jTableFuncionario.getColumnModel().getColumn(1).setPreferredWidth(80);
+        jTableFuncionario.getColumnModel().getColumn(2).setPreferredWidth(20);
+        jTableFuncionario.getColumnModel().getColumn(3).setPreferredWidth(20);
+
+        Aplicativo app = new Aplicativo();
+        
+        app.selectFuncionario().forEach((l) -> {
+            modelo.addRow(new Object[]{
+                
+                l.getId(),
+                l.getNome(),
+                l.getCpf(),
+                l.getCargo()
+                
+            });
+        });
+    }
+    
+    //Limpa os campos de Cadastra Funcionários
+    public void limpaCamposCadFunc(){
+        nomeCompletoCadFunc.setText("");
+        dataNascCadFunc.setText("");
+        cargoCadFunc.setSelectedIndex(0);
+        rgCadFunc.setText("");
+        dataNascCadFunc.setText("");
+        carteiraDeTrabCadFunc.setText("");
+        cpfCadFunc.setText("");
+        TituloDeEleitorCadFunc.setText("");
+        pisCadFunc.setText("");
+        cepCadFunc.setText("");
+        numeroCadFunc.setText("");
+        cidadeCadFunc.setText("");
+        logradouroCadFunc.setText("");
+        complementoCadFunc.setText("");
+        bairroCadFunc.setText("");
+        estadoCadFunc.setSelectedIndex(0);
+    }
+    
+    //Limpa os compos de Cadastra Produto
+    public void limpaCamposCadProduto(){
+        nomeProdutoCadProd.setText("");
+        quantidadeCadProd.setText("");
+        precoCadProd.setText("");
+        descricaoCadProd.setText("");
+    }
+    
+    //Lima os campos de Atualizar Funcionário
+    public void limpaCamposAtuFunc(){
+        nomeCompletoAtuFunc.setText("");
+        dataNascAtuFunc.setText("");
+        cargoAtuaFunc.setSelectedIndex(0);
+        rgAtuFunc.setText("");
+        dataNascAtuFunc.setText("");
+        carteiraDeTrabAtuFunc.setText("");
+        cpfAtuFunc.setText("");
+        tituloDeEleitorAtuFunc.setText("");
+        pisAtuFunc.setText("");
+        cepAtuFunc.setText("");
+        numeroAtuFunc.setText("");
+        cidadeAtuFunc.setText("");
+        logradouroAtuFunc.setText("");
+        complementoAtuFunc.setText("");
+        bairroAtuFunc.setText("");
+        estadoAtuaFunc.setSelectedIndex(0);
+    }
+
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jPanelInicio = new javax.swing.JPanel();
+        btcadFuncIni = new javax.swing.JLabel();
+        btvisFuncIni = new javax.swing.JLabel();
+        btcadProdIni = new javax.swing.JLabel();
+        btvisProdIni = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanelcadFuncionario = new javax.swing.JPanel();
+        btcadFuncCadFunc = new javax.swing.JLabel();
+        btvisFuncCadFunc = new javax.swing.JLabel();
+        btcadProdCadFunc = new javax.swing.JLabel();
+        btvisProdCadFunc = new javax.swing.JLabel();
+        estadoCadFunc = new javax.swing.JComboBox<>();
+        cargoCadFunc = new javax.swing.JComboBox<>();
+        nomeCompletoCadFunc = new javax.swing.JTextField();
+        carteiraDeTrabCadFunc = new javax.swing.JTextField();
+        TituloDeEleitorCadFunc = new javax.swing.JTextField();
+        pisCadFunc = new javax.swing.JTextField();
+        cepCadFunc = new javax.swing.JTextField();
+        numeroCadFunc = new javax.swing.JTextField();
+        cidadeCadFunc = new javax.swing.JTextField();
+        logradouroCadFunc = new javax.swing.JTextField();
+        complementoCadFunc = new javax.swing.JTextField();
+        bairroCadFunc = new javax.swing.JTextField();
+        btcancelarCadFunc = new javax.swing.JLabel();
+        btcadastrarCadFunc = new javax.swing.JLabel();
+        dataNascCadFunc = new javax.swing.JFormattedTextField();
+        rgCadFunc = new javax.swing.JFormattedTextField();
+        cpfCadFunc = new javax.swing.JFormattedTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jPanelvisFuncionario = new javax.swing.JPanel();
+        btcadFuncVisFunc = new javax.swing.JLabel();
+        btcadProdVisFunc = new javax.swing.JLabel();
+        btvisProdVisFunc = new javax.swing.JLabel();
+        btatualizarVisFunc = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableFuncionario = new javax.swing.JTable();
+        btdelFuncionario = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanelcadProduto = new javax.swing.JPanel();
+        btcadFuncCadProd = new javax.swing.JLabel();
+        btvisFuncCadProd = new javax.swing.JLabel();
+        btvisProdCadProd = new javax.swing.JLabel();
+        nomeProdutoCadProd = new javax.swing.JTextField();
+        quantidadeCadProd = new javax.swing.JTextField();
+        precoCadProd = new javax.swing.JTextField();
+        btcancelarCadProd = new javax.swing.JLabel();
+        JScrollPane = new javax.swing.JScrollPane();
+        descricaoCadProd = new javax.swing.JTextArea();
+        jLabel8 = new javax.swing.JLabel();
+        brcadastrarCadFunc = new javax.swing.JLabel();
+        jPanelvisProduto = new javax.swing.JPanel();
+        btcadFuncVisProd = new javax.swing.JLabel();
+        btvisFuncVisProd = new javax.swing.JLabel();
+        btcadProdVisProd = new javax.swing.JLabel();
+        btatualizarAtuProd = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableProdutos = new javax.swing.JTable();
+        btdelProduto = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanelatuFuncionario = new javax.swing.JPanel();
+        btcadFuncAtuFunc = new javax.swing.JLabel();
+        btvisFuncAtuFunc = new javax.swing.JLabel();
+        btcadProdAtuFunc = new javax.swing.JLabel();
+        btvisProdAtuFunc = new javax.swing.JLabel();
+        nomeCompletoAtuFunc = new javax.swing.JTextField();
+        carteiraDeTrabAtuFunc = new javax.swing.JTextField();
+        tituloDeEleitorAtuFunc = new javax.swing.JTextField();
+        pisAtuFunc = new javax.swing.JTextField();
+        cepAtuFunc = new javax.swing.JTextField();
+        numeroAtuFunc = new javax.swing.JTextField();
+        cidadeAtuFunc = new javax.swing.JTextField();
+        logradouroAtuFunc = new javax.swing.JTextField();
+        complementoAtuFunc = new javax.swing.JTextField();
+        bairroAtuFunc = new javax.swing.JTextField();
+        estadoAtuaFunc = new javax.swing.JComboBox<>();
+        cargoAtuaFunc = new javax.swing.JComboBox<>();
+        btcancelarAtuFunc = new javax.swing.JLabel();
+        rgAtuFunc = new javax.swing.JFormattedTextField();
+        cpfAtuFunc = new javax.swing.JFormattedTextField();
+        dataNascAtuFunc = new javax.swing.JFormattedTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jPanelatuProduto = new javax.swing.JPanel();
+        btcadFuncAtuProd = new javax.swing.JLabel();
+        btvisFuncAtuProd = new javax.swing.JLabel();
+        btvisProdAtuProd = new javax.swing.JLabel();
+        btcadProdAtuProd = new javax.swing.JLabel();
+        nomeProdAtuProd = new javax.swing.JTextField();
+        quantidadeAtuProd = new javax.swing.JTextField();
+        precoAtuProd = new javax.swing.JTextField();
+        descricaoAtuProd = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        btcancelarAtuProd = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1024, 626));
+        setMinimumSize(new java.awt.Dimension(1024, 626));
+        setPreferredSize(new java.awt.Dimension(1024, 626));
+        setResizable(false);
+        getContentPane().setLayout(new java.awt.CardLayout());
+
+        jPanel1.setMaximumSize(new java.awt.Dimension(1024, 576));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1024, 576));
+        jPanel1.setLayout(new java.awt.CardLayout());
+
+        jPanelInicio.setMaximumSize(new java.awt.Dimension(1024, 576));
+        jPanelInicio.setMinimumSize(new java.awt.Dimension(1024, 576));
+        jPanelInicio.setLayout(null);
+
+        btcadFuncIni.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btcadFuncIniMouseClicked(evt);
+            }
+        });
+        jPanelInicio.add(btcadFuncIni);
+        btcadFuncIni.setBounds(14, 154, 430, 70);
+
+        btvisFuncIni.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btvisFuncIniMouseClicked(evt);
+            }
+        });
+        jPanelInicio.add(btvisFuncIni);
+        btvisFuncIni.setBounds(14, 254, 430, 60);
+
+        btcadProdIni.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btcadProdIniMouseClicked(evt);
+            }
+        });
+        jPanelInicio.add(btcadProdIni);
+        btcadProdIni.setBounds(20, 354, 420, 60);
+
+        btvisProdIni.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btvisProdIniMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btvisProdIniMouseEntered(evt);
+            }
+        });
+        jPanelInicio.add(btvisProdIni);
+        btvisProdIni.setBounds(20, 454, 420, 60);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Início3.png"))); // NOI18N
+        jPanelInicio.add(jLabel1);
+        jLabel1.setBounds(0, 0, 1024, 576);
+
+        jPanel1.add(jPanelInicio, "Inicio");
+
+        jPanelcadFuncionario.setMaximumSize(new java.awt.Dimension(1024, 576));
+        jPanelcadFuncionario.setMinimumSize(new java.awt.Dimension(1024, 576));
+        jPanelcadFuncionario.setPreferredSize(new java.awt.Dimension(1024, 576));
+        jPanelcadFuncionario.setLayout(null);
+
+        btcadFuncCadFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btcadFuncCadFuncMouseClicked(evt);
+            }
+        });
+        jPanelcadFuncionario.add(btcadFuncCadFunc);
+        btcadFuncCadFunc.setBounds(14, 154, 430, 70);
+
+        btvisFuncCadFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btvisFuncCadFuncMouseClicked(evt);
+            }
+        });
+        jPanelcadFuncionario.add(btvisFuncCadFunc);
+        btvisFuncCadFunc.setBounds(14, 254, 430, 60);
+
+        btcadProdCadFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btcadProdCadFuncMouseClicked(evt);
+            }
+        });
+        jPanelcadFuncionario.add(btcadProdCadFunc);
+        btcadProdCadFunc.setBounds(20, 354, 420, 60);
+
+        btvisProdCadFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btvisProdCadFuncMouseClicked(evt);
+            }
+        });
+        jPanelcadFuncionario.add(btvisProdCadFunc);
+        btvisProdCadFunc.setBounds(20, 454, 430, 60);
+
+        estadoCadFunc.setBackground(new java.awt.Color(255, 60, 60));
+        estadoCadFunc.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        estadoCadFunc.setForeground(new java.awt.Color(255, 60, 60));
+        estadoCadFunc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        estadoCadFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estadoCadFuncActionPerformed(evt);
+            }
+        });
+        jPanelcadFuncionario.add(estadoCadFunc);
+        estadoCadFunc.setBounds(500, 510, 210, 30);
+
+        cargoCadFunc.setBackground(new java.awt.Color(255, 60, 60));
+        cargoCadFunc.setForeground(new java.awt.Color(255, 60, 60));
+        cargoCadFunc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gerente", "Garçom", "Garçonete", "Cozinheiro(a)", "Aux. Cozinha", "Atend. Caixa", "Aux. Copa", "Faxineiro(a)" }));
+        jPanelcadFuncionario.add(cargoCadFunc);
+        cargoCadFunc.setBounds(860, 140, 120, 20);
+
+        nomeCompletoCadFunc.setBackground(new java.awt.Color(255, 232, 232));
+        nomeCompletoCadFunc.setBorder(null);
+        nomeCompletoCadFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeCompletoCadFuncActionPerformed(evt);
+            }
+        });
+        jPanelcadFuncionario.add(nomeCompletoCadFunc);
+        nomeCompletoCadFunc.setBounds(520, 140, 330, 20);
+
+        carteiraDeTrabCadFunc.setBackground(new java.awt.Color(255, 232, 232));
+        carteiraDeTrabCadFunc.setBorder(null);
+        jPanelcadFuncionario.add(carteiraDeTrabCadFunc);
+        carteiraDeTrabCadFunc.setBounds(520, 280, 180, 18);
+
+        TituloDeEleitorCadFunc.setBackground(new java.awt.Color(255, 232, 232));
+        TituloDeEleitorCadFunc.setBorder(null);
+        jPanelcadFuncionario.add(TituloDeEleitorCadFunc);
+        TituloDeEleitorCadFunc.setBounds(790, 230, 180, 18);
+
+        pisCadFunc.setBackground(new java.awt.Color(255, 232, 232));
+        pisCadFunc.setBorder(null);
+        jPanelcadFuncionario.add(pisCadFunc);
+        pisCadFunc.setBounds(790, 280, 180, 18);
+
+        cepCadFunc.setBackground(new java.awt.Color(255, 232, 232));
+        cepCadFunc.setBorder(null);
+        jPanelcadFuncionario.add(cepCadFunc);
+        cepCadFunc.setBounds(520, 370, 180, 20);
+
+        numeroCadFunc.setBackground(new java.awt.Color(255, 232, 232));
+        numeroCadFunc.setBorder(null);
+        jPanelcadFuncionario.add(numeroCadFunc);
+        numeroCadFunc.setBounds(520, 420, 180, 20);
+
+        cidadeCadFunc.setBackground(new java.awt.Color(255, 232, 232));
+        cidadeCadFunc.setBorder(null);
+        jPanelcadFuncionario.add(cidadeCadFunc);
+        cidadeCadFunc.setBounds(520, 470, 180, 20);
+
+        logradouroCadFunc.setBackground(new java.awt.Color(255, 232, 232));
+        logradouroCadFunc.setBorder(null);
+        jPanelcadFuncionario.add(logradouroCadFunc);
+        logradouroCadFunc.setBounds(790, 370, 180, 20);
+
+        complementoCadFunc.setBackground(new java.awt.Color(255, 232, 232));
+        complementoCadFunc.setBorder(null);
+        jPanelcadFuncionario.add(complementoCadFunc);
+        complementoCadFunc.setBounds(790, 420, 180, 18);
+
+        bairroCadFunc.setBackground(new java.awt.Color(255, 232, 232));
+        bairroCadFunc.setBorder(null);
+        jPanelcadFuncionario.add(bairroCadFunc);
+        bairroCadFunc.setBounds(790, 470, 180, 18);
+
+        btcancelarCadFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btcancelarCadFuncMouseClicked(evt);
+            }
+        });
+        jPanelcadFuncionario.add(btcancelarCadFunc);
+        btcancelarCadFunc.setBounds(780, 520, 90, 40);
+
+        btcadastrarCadFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btcadastrarCadFuncMouseClicked(evt);
+            }
+        });
+        jPanelcadFuncionario.add(btcadastrarCadFunc);
+        btcadastrarCadFunc.setBounds(890, 510, 110, 50);
+
+        dataNascCadFunc.setBackground(new java.awt.Color(255, 232, 232));
+        dataNascCadFunc.setBorder(null);
+        try {
+            dataNascCadFunc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jPanelcadFuncionario.add(dataNascCadFunc);
+        dataNascCadFunc.setBounds(520, 230, 180, 18);
+
+        rgCadFunc.setBackground(new java.awt.Color(255, 232, 232));
+        rgCadFunc.setBorder(null);
+        try {
+            rgCadFunc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        rgCadFunc.setToolTipText("");
+        rgCadFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rgCadFuncActionPerformed(evt);
+            }
+        });
+        jPanelcadFuncionario.add(rgCadFunc);
+        rgCadFunc.setBounds(520, 180, 180, 18);
+
+        cpfCadFunc.setBackground(new java.awt.Color(255, 232, 232));
+        cpfCadFunc.setBorder(null);
+        try {
+            cpfCadFunc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        cpfCadFunc.setToolTipText("");
+        cpfCadFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpfCadFuncActionPerformed(evt);
+            }
+        });
+        jPanelcadFuncionario.add(cpfCadFunc);
+        cpfCadFunc.setBounds(790, 180, 130, 18);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Cadastrar Funcionário3.png"))); // NOI18N
+        jPanelcadFuncionario.add(jLabel2);
+        jLabel2.setBounds(0, 0, 1024, 576);
+
+        jPanel1.add(jPanelcadFuncionario, "cadFuncionario");
+
+        jPanelvisFuncionario.setMaximumSize(new java.awt.Dimension(1024, 576));
+        jPanelvisFuncionario.setMinimumSize(new java.awt.Dimension(1024, 576));
+        jPanelvisFuncionario.setPreferredSize(new java.awt.Dimension(1024, 576));
+        jPanelvisFuncionario.setLayout(null);
+
+        btcadFuncVisFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btcadFuncVisFuncMouseClicked(evt);
+            }
+        });
+        jPanelvisFuncionario.add(btcadFuncVisFunc);
+        btcadFuncVisFunc.setBounds(14, 154, 430, 70);
+
+        btcadProdVisFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btcadProdVisFuncMouseClicked(evt);
+            }
+        });
+        jPanelvisFuncionario.add(btcadProdVisFunc);
+        btcadProdVisFunc.setBounds(14, 354, 430, 60);
+
+        btvisProdVisFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btvisProdVisFuncMouseClicked(evt);
+            }
+        });
+        jPanelvisFuncionario.add(btvisProdVisFunc);
+        btvisProdVisFunc.setBounds(20, 454, 420, 60);
+
+        btatualizarVisFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btatualizarVisFuncMouseClicked(evt);
+            }
+        });
+        jPanelvisFuncionario.add(btatualizarVisFunc);
+        btatualizarVisFunc.setBounds(894, 514, 100, 40);
+
+        jTableFuncionario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nome", "CPF", "Cargo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTableFuncionario);
+
+        jPanelvisFuncionario.add(jScrollPane1);
+        jScrollPane1.setBounds(480, 110, 530, 402);
+
+        btdelFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btdelFuncionarioMouseClicked(evt);
+            }
+        });
+        jPanelvisFuncionario.add(btdelFuncionario);
+        btdelFuncionario.setBounds(770, 520, 110, 40);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Visualizar Funcionário.png"))); // NOI18N
+        jPanelvisFuncionario.add(jLabel3);
+        jLabel3.setBounds(0, 0, 1024, 576);
+
+        jPanel1.add(jPanelvisFuncionario, "visFuncionario");
+
+        jPanelcadProduto.setMaximumSize(new java.awt.Dimension(1024, 576));
+        jPanelcadProduto.setMinimumSize(new java.awt.Dimension(1024, 576));
+        jPanelcadProduto.setPreferredSize(new java.awt.Dimension(1024, 576));
+        jPanelcadProduto.setLayout(null);
+
+        btcadFuncCadProd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btcadFuncCadProdMouseClicked(evt);
+            }
+        });
+        jPanelcadProduto.add(btcadFuncCadProd);
+        btcadFuncCadProd.setBounds(20, 150, 420, 70);
+
+        btvisFuncCadProd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btvisFuncCadProdMouseClicked(evt);
+            }
+        });
+        jPanelcadProduto.add(btvisFuncCadProd);
+        btvisFuncCadProd.setBounds(14, 254, 420, 60);
+
+        btvisProdCadProd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btvisProdCadProdMouseClicked(evt);
+            }
+        });
+        jPanelcadProduto.add(btvisProdCadProd);
+        btvisProdCadProd.setBounds(20, 450, 420, 60);
+
+        nomeProdutoCadProd.setBackground(new java.awt.Color(255, 232, 232));
+        nomeProdutoCadProd.setBorder(null);
+        jPanelcadProduto.add(nomeProdutoCadProd);
+        nomeProdutoCadProd.setBounds(520, 140, 450, 18);
+
+        quantidadeCadProd.setBackground(new java.awt.Color(255, 232, 232));
+        quantidadeCadProd.setBorder(null);
+        jPanelcadProduto.add(quantidadeCadProd);
+        quantidadeCadProd.setBounds(520, 200, 180, 18);
+
+        precoCadProd.setBackground(new java.awt.Color(255, 232, 232));
+        precoCadProd.setBorder(null);
+        jPanelcadProduto.add(precoCadProd);
+        precoCadProd.setBounds(790, 200, 180, 18);
+
+        btcancelarCadProd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btcancelarCadProdMouseClicked(evt);
+            }
+        });
+        jPanelcadProduto.add(btcancelarCadProd);
+        btcancelarCadProd.setBounds(780, 520, 90, 40);
+
+        JScrollPane.setBackground(new java.awt.Color(255, 232, 232));
+        JScrollPane.setBorder(null);
+
+        descricaoCadProd.setBackground(new java.awt.Color(255, 232, 232));
+        descricaoCadProd.setColumns(20);
+        descricaoCadProd.setRows(5);
+        descricaoCadProd.setBorder(null);
+        JScrollPane.setViewportView(descricaoCadProd);
+
+        jPanelcadProduto.add(JScrollPane);
+        JScrollPane.setBounds(520, 270, 450, 150);
+
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
+        jPanelcadProduto.add(jLabel8);
+        jLabel8.setBounds(890, 510, 110, 50);
+
+        brcadastrarCadFunc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Cadastrar Produto 3.png"))); // NOI18N
+        jPanelcadProduto.add(brcadastrarCadFunc);
+        brcadastrarCadFunc.setBounds(0, 0, 1024, 576);
+
+        jPanel1.add(jPanelcadProduto, "cadProduto");
+
+        jPanelvisProduto.setMaximumSize(new java.awt.Dimension(1024, 576));
+        jPanelvisProduto.setMinimumSize(new java.awt.Dimension(1024, 576));
+        jPanelvisProduto.setPreferredSize(new java.awt.Dimension(1024, 576));
+        jPanelvisProduto.setLayout(null);
+
+        btcadFuncVisProd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btcadFuncVisProdMouseClicked(evt);
+            }
+        });
+        jPanelvisProduto.add(btcadFuncVisProd);
+        btcadFuncVisProd.setBounds(20, 150, 420, 70);
+
+        btvisFuncVisProd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btvisFuncVisProdMouseClicked(evt);
+            }
+        });
+        jPanelvisProduto.add(btvisFuncVisProd);
+        btvisFuncVisProd.setBounds(24, 254, 410, 60);
+
+        btcadProdVisProd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btcadProdVisProdMouseClicked(evt);
+            }
+        });
+        jPanelvisProduto.add(btcadProdVisProd);
+        btcadProdVisProd.setBounds(20, 354, 420, 60);
+
+        btatualizarAtuProd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btatualizarAtuProdMouseClicked(evt);
+            }
+        });
+        jPanelvisProduto.add(btatualizarAtuProd);
+        btatualizarAtuProd.setBounds(890, 510, 100, 50);
+
+        jTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nome", "Quantidade", "Preço"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTableProdutos);
+
+        jPanelvisProduto.add(jScrollPane2);
+        jScrollPane2.setBounds(480, 110, 530, 402);
+
+        btdelProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btdelProdutoMouseClicked(evt);
+            }
+        });
+        jPanelvisProduto.add(btdelProduto);
+        btdelProduto.setBounds(770, 510, 110, 50);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Visualizar Produto.png"))); // NOI18N
+        jPanelvisProduto.add(jLabel5);
+        jLabel5.setBounds(0, 0, 1024, 576);
+
+        jPanel1.add(jPanelvisProduto, "visProduto");
+
+        jPanelatuFuncionario.setMaximumSize(new java.awt.Dimension(1024, 576));
+        jPanelatuFuncionario.setMinimumSize(new java.awt.Dimension(1024, 576));
+        jPanelatuFuncionario.setPreferredSize(new java.awt.Dimension(1024, 576));
+        jPanelatuFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelatuFuncionarioMouseClicked(evt);
+            }
+        });
+        jPanelatuFuncionario.setLayout(null);
+
+        btcadFuncAtuFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btcadFuncAtuFuncMouseClicked(evt);
+            }
+        });
+        jPanelatuFuncionario.add(btcadFuncAtuFunc);
+        btcadFuncAtuFunc.setBounds(14, 154, 430, 60);
+
+        btvisFuncAtuFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btvisFuncAtuFuncMouseClicked(evt);
+            }
+        });
+        jPanelatuFuncionario.add(btvisFuncAtuFunc);
+        btvisFuncAtuFunc.setBounds(20, 250, 420, 60);
+
+        btcadProdAtuFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btcadProdAtuFuncMouseClicked(evt);
+            }
+        });
+        jPanelatuFuncionario.add(btcadProdAtuFunc);
+        btcadProdAtuFunc.setBounds(20, 354, 420, 60);
+
+        btvisProdAtuFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btvisProdAtuFuncMouseClicked(evt);
+            }
+        });
+        jPanelatuFuncionario.add(btvisProdAtuFunc);
+        btvisProdAtuFunc.setBounds(20, 454, 420, 60);
+
+        nomeCompletoAtuFunc.setBackground(new java.awt.Color(255, 232, 232));
+        nomeCompletoAtuFunc.setBorder(null);
+        jPanelatuFuncionario.add(nomeCompletoAtuFunc);
+        nomeCompletoAtuFunc.setBounds(520, 136, 330, 18);
+
+        carteiraDeTrabAtuFunc.setBackground(new java.awt.Color(255, 232, 232));
+        carteiraDeTrabAtuFunc.setBorder(null);
+        jPanelatuFuncionario.add(carteiraDeTrabAtuFunc);
+        carteiraDeTrabAtuFunc.setBounds(520, 276, 180, 18);
+
+        tituloDeEleitorAtuFunc.setBackground(new java.awt.Color(255, 232, 232));
+        tituloDeEleitorAtuFunc.setBorder(null);
+        jPanelatuFuncionario.add(tituloDeEleitorAtuFunc);
+        tituloDeEleitorAtuFunc.setBounds(790, 230, 180, 18);
+
+        pisAtuFunc.setBackground(new java.awt.Color(255, 232, 232));
+        pisAtuFunc.setBorder(null);
+        jPanelatuFuncionario.add(pisAtuFunc);
+        pisAtuFunc.setBounds(790, 276, 180, 18);
+
+        cepAtuFunc.setBackground(new java.awt.Color(255, 232, 232));
+        cepAtuFunc.setBorder(null);
+        jPanelatuFuncionario.add(cepAtuFunc);
+        cepAtuFunc.setBounds(510, 370, 190, 18);
+
+        numeroAtuFunc.setBackground(new java.awt.Color(255, 232, 232));
+        numeroAtuFunc.setToolTipText("");
+        numeroAtuFunc.setBorder(null);
+        numeroAtuFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numeroAtuFuncActionPerformed(evt);
+            }
+        });
+        jPanelatuFuncionario.add(numeroAtuFunc);
+        numeroAtuFunc.setBounds(510, 420, 190, 18);
+
+        cidadeAtuFunc.setBackground(new java.awt.Color(255, 232, 232));
+        cidadeAtuFunc.setBorder(null);
+        jPanelatuFuncionario.add(cidadeAtuFunc);
+        cidadeAtuFunc.setBounds(510, 470, 190, 18);
+
+        logradouroAtuFunc.setBackground(new java.awt.Color(255, 232, 232));
+        logradouroAtuFunc.setBorder(null);
+        jPanelatuFuncionario.add(logradouroAtuFunc);
+        logradouroAtuFunc.setBounds(790, 370, 180, 18);
+
+        complementoAtuFunc.setBackground(new java.awt.Color(255, 232, 232));
+        complementoAtuFunc.setBorder(null);
+        jPanelatuFuncionario.add(complementoAtuFunc);
+        complementoAtuFunc.setBounds(790, 420, 180, 18);
+
+        bairroAtuFunc.setBackground(new java.awt.Color(255, 232, 232));
+        bairroAtuFunc.setBorder(null);
+        jPanelatuFuncionario.add(bairroAtuFunc);
+        bairroAtuFunc.setBounds(790, 470, 180, 18);
+
+        estadoAtuaFunc.setBackground(new java.awt.Color(255, 60, 60));
+        estadoAtuaFunc.setForeground(new java.awt.Color(255, 60, 60));
+        estadoAtuaFunc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        jPanelatuFuncionario.add(estadoAtuaFunc);
+        estadoAtuaFunc.setBounds(510, 510, 190, 30);
+
+        cargoAtuaFunc.setBackground(new java.awt.Color(255, 60, 60));
+        cargoAtuaFunc.setForeground(new java.awt.Color(255, 60, 60));
+        cargoAtuaFunc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gerente", "Garçom", "Garçonete", "Cozinheiro(a)", "Aux. Cozinha", "Atend. Caixa", "Aux. Copa", "Faxineiro(a)" }));
+        jPanelatuFuncionario.add(cargoAtuaFunc);
+        cargoAtuaFunc.setBounds(860, 130, 120, 30);
+
+        btcancelarAtuFunc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btcancelarAtuFuncMouseClicked(evt);
+            }
+        });
+        jPanelatuFuncionario.add(btcancelarAtuFunc);
+        btcancelarAtuFunc.setBounds(770, 510, 100, 50);
+
+        rgAtuFunc.setBackground(new java.awt.Color(255, 232, 232));
+        rgAtuFunc.setBorder(null);
+        try {
+            rgAtuFunc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jPanelatuFuncionario.add(rgAtuFunc);
+        rgAtuFunc.setBounds(520, 180, 170, 20);
+
+        cpfAtuFunc.setBackground(new java.awt.Color(255, 232, 232));
+        cpfAtuFunc.setBorder(null);
+        try {
+            cpfAtuFunc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        cpfAtuFunc.setPreferredSize(new java.awt.Dimension(45, 10));
+        jPanelatuFuncionario.add(cpfAtuFunc);
+        cpfAtuFunc.setBounds(790, 180, 170, 20);
+
+        dataNascAtuFunc.setBackground(new java.awt.Color(255, 232, 232));
+        dataNascAtuFunc.setBorder(null);
+        try {
+            dataNascAtuFunc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jPanelatuFuncionario.add(dataNascAtuFunc);
+        dataNascAtuFunc.setBounds(520, 230, 180, 18);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Atualizar Funcionário3.png"))); // NOI18N
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
+        jPanelatuFuncionario.add(jLabel6);
+        jLabel6.setBounds(0, -20, 1020, 610);
+
+        jPanel1.add(jPanelatuFuncionario, "atuFuncionario");
+
+        jPanelatuProduto.setMaximumSize(new java.awt.Dimension(1024, 576));
+        jPanelatuProduto.setMinimumSize(new java.awt.Dimension(1024, 576));
+        jPanelatuProduto.setPreferredSize(new java.awt.Dimension(1024, 576));
+        jPanelatuProduto.setLayout(null);
+
+        btcadFuncAtuProd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btcadFuncAtuProdMouseClicked(evt);
+            }
+        });
+        jPanelatuProduto.add(btcadFuncAtuProd);
+        btcadFuncAtuProd.setBounds(14, 154, 430, 60);
+
+        btvisFuncAtuProd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btvisFuncAtuProdMouseClicked(evt);
+            }
+        });
+        jPanelatuProduto.add(btvisFuncAtuProd);
+        btvisFuncAtuProd.setBounds(14, 254, 430, 60);
+
+        btvisProdAtuProd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btvisProdAtuProdMouseClicked(evt);
+            }
+        });
+        jPanelatuProduto.add(btvisProdAtuProd);
+        btvisProdAtuProd.setBounds(20, 450, 420, 70);
+
+        btcadProdAtuProd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btcadProdAtuProdMouseClicked(evt);
+            }
+        });
+        jPanelatuProduto.add(btcadProdAtuProd);
+        btcadProdAtuProd.setBounds(20, 350, 420, 70);
+
+        nomeProdAtuProd.setBackground(new java.awt.Color(255, 232, 232));
+        nomeProdAtuProd.setBorder(null);
+        jPanelatuProduto.add(nomeProdAtuProd);
+        nomeProdAtuProd.setBounds(520, 140, 450, 18);
+
+        quantidadeAtuProd.setBackground(new java.awt.Color(255, 232, 232));
+        quantidadeAtuProd.setBorder(null);
+        jPanelatuProduto.add(quantidadeAtuProd);
+        quantidadeAtuProd.setBounds(520, 200, 180, 18);
+
+        precoAtuProd.setBackground(new java.awt.Color(255, 232, 232));
+        precoAtuProd.setBorder(null);
+        jPanelatuProduto.add(precoAtuProd);
+        precoAtuProd.setBounds(790, 200, 180, 18);
+
+        descricaoAtuProd.setBackground(new java.awt.Color(255, 232, 232));
+        descricaoAtuProd.setBorder(null);
+
+        jTextArea2.setBackground(new java.awt.Color(255, 232, 232));
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jTextArea2.setBorder(null);
+        descricaoAtuProd.setViewportView(jTextArea2);
+
+        jPanelatuProduto.add(descricaoAtuProd);
+        descricaoAtuProd.setBounds(520, 270, 450, 150);
+
+        btcancelarAtuProd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btcancelarAtuProdMouseClicked(evt);
+            }
+        });
+        jPanelatuProduto.add(btcancelarAtuProd);
+        btcancelarAtuProd.setBounds(770, 510, 110, 50);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Atualizar Produto 3.png"))); // NOI18N
+        jPanelatuProduto.add(jLabel7);
+        jLabel7.setBounds(0, 0, 1024, 576);
+
+        jPanel1.add(jPanelatuProduto, "atuProduto");
+
+        getContentPane().add(jPanel1, "card2");
+
+        jMenu1.setText("Início");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem1.setText("Início");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Cadastrar Funcionário");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("Visualizar Funcionário");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
+
+        jMenuItem4.setText("Cadastrar Produto");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
+
+        jMenuItem5.setText("Visualizar Produto");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
+        pack();
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "Inicio");
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "cadFuncionario");
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "visFuncionario");
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "Inicio");
+        
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "cadProduto");
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "visProduto");
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void btcadFuncIniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btcadFuncIniMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "cadFuncionario");
+    }//GEN-LAST:event_btcadFuncIniMouseClicked
+
+    private void btvisFuncIniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btvisFuncIniMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "visFuncionario");
+        carregaTabelaFuncionario();
+    }//GEN-LAST:event_btvisFuncIniMouseClicked
+
+    private void btcadProdIniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btcadProdIniMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "cadProduto");
+    }//GEN-LAST:event_btcadProdIniMouseClicked
+
+    private void btvisProdIniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btvisProdIniMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "visProduto");
+        carregaTabelaProduto();
+    }//GEN-LAST:event_btvisProdIniMouseClicked
+
+    private void btcadFuncCadFuncMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btcadFuncCadFuncMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "cadFuncionario");
+    }//GEN-LAST:event_btcadFuncCadFuncMouseClicked
+
+    private void btvisFuncCadFuncMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btvisFuncCadFuncMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "visFuncionario");
+        carregaTabelaFuncionario();
+    }//GEN-LAST:event_btvisFuncCadFuncMouseClicked
+
+    private void btcadProdCadFuncMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btcadProdCadFuncMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "cadProduto");
+    }//GEN-LAST:event_btcadProdCadFuncMouseClicked
+
+    private void btvisProdCadFuncMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btvisProdCadFuncMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "visProduto");
+        carregaTabelaProduto();
+    }//GEN-LAST:event_btvisProdCadFuncMouseClicked
+
+    private void estadoCadFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoCadFuncActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_estadoCadFuncActionPerformed
+
+    private void btcadFuncVisFuncMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btcadFuncVisFuncMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "cadFuncionario");
+    }//GEN-LAST:event_btcadFuncVisFuncMouseClicked
+
+    private void btcadProdVisFuncMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btcadProdVisFuncMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "cadProduto");
+    }//GEN-LAST:event_btcadProdVisFuncMouseClicked
+
+    private void btvisProdVisFuncMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btvisProdVisFuncMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "visProduto");
+        carregaTabelaProduto();
+    }//GEN-LAST:event_btvisProdVisFuncMouseClicked
+
+    private void nomeCompletoCadFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeCompletoCadFuncActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeCompletoCadFuncActionPerformed
+
+    private void btcancelarCadFuncMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btcancelarCadFuncMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "Inicio");
+        limpaCamposCadFunc();
+    }//GEN-LAST:event_btcancelarCadFuncMouseClicked
+
+    private void btcadFuncCadProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btcadFuncCadProdMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "cadFuncionario");
+    }//GEN-LAST:event_btcadFuncCadProdMouseClicked
+
+    private void btvisFuncCadProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btvisFuncCadProdMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "visFuncionario");
+        carregaTabelaFuncionario();
+    }//GEN-LAST:event_btvisFuncCadProdMouseClicked
+
+    private void btvisProdCadProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btvisProdCadProdMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "visProduto");
+        carregaTabelaProduto();
+    }//GEN-LAST:event_btvisProdCadProdMouseClicked
+
+    private void btcancelarCadProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btcancelarCadProdMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "Inicio");
+        limpaCamposCadProduto();
+    }//GEN-LAST:event_btcancelarCadProdMouseClicked
+
+    private void btcadFuncVisProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btcadFuncVisProdMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "cadFuncionario");
+    }//GEN-LAST:event_btcadFuncVisProdMouseClicked
+
+    private void btvisFuncVisProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btvisFuncVisProdMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "visFuncionario");
+        carregaTabelaFuncionario();
+    }//GEN-LAST:event_btvisFuncVisProdMouseClicked
+
+    private void btcadProdVisProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btcadProdVisProdMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "cadProduto");
+    }//GEN-LAST:event_btcadProdVisProdMouseClicked
+
+    private void btatualizarVisFuncMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btatualizarVisFuncMouseClicked
+        if((Integer)jTableFuncionario.getModel().getValueAt(jTableFuncionario.getSelectedRow(), 0) != -1){
+            atuFuncionario((Integer) jTableFuncionario.getModel().getValueAt(jTableFuncionario.getSelectedRow(), 0));
+            CardLayout cl = (CardLayout) jPanel1.getLayout();
+            cl.show(jPanel1, "atuFuncionario");
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um funcionário");
+        }     
+    }//GEN-LAST:event_btatualizarVisFuncMouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void btcadFuncAtuFuncMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btcadFuncAtuFuncMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "cadFuncionario");
+    }//GEN-LAST:event_btcadFuncAtuFuncMouseClicked
+
+    private void jPanelatuFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelatuFuncionarioMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "visFuncionario");
+    }//GEN-LAST:event_jPanelatuFuncionarioMouseClicked
+
+    private void btcadProdAtuFuncMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btcadProdAtuFuncMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "cadProduto");
+    }//GEN-LAST:event_btcadProdAtuFuncMouseClicked
+
+    private void btvisProdAtuFuncMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btvisProdAtuFuncMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "visProduto");
+        carregaTabelaProduto();
+    }//GEN-LAST:event_btvisProdAtuFuncMouseClicked
+
+    private void numeroAtuFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroAtuFuncActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numeroAtuFuncActionPerformed
+
+    private void btcancelarAtuFuncMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btcancelarAtuFuncMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "visFuncionario");
+    }//GEN-LAST:event_btcancelarAtuFuncMouseClicked
+
+    private void btcadProdAtuProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btcadProdAtuProdMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "cadProduto");
+    }//GEN-LAST:event_btcadProdAtuProdMouseClicked
+
+    private void btcadFuncAtuProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btcadFuncAtuProdMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "cadFuncionario");
+    }//GEN-LAST:event_btcadFuncAtuProdMouseClicked
+
+    private void btvisProdAtuProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btvisProdAtuProdMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "visProduto");
+        carregaTabelaProduto();
+    }//GEN-LAST:event_btvisProdAtuProdMouseClicked
+
+    private void btvisFuncAtuProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btvisFuncAtuProdMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "visFuncionario");
+        carregaTabelaFuncionario();
+    }//GEN-LAST:event_btvisFuncAtuProdMouseClicked
+
+    private void rgCadFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rgCadFuncActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rgCadFuncActionPerformed
+
+    private void cpfCadFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfCadFuncActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cpfCadFuncActionPerformed
+
+    private void btatualizarAtuProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btatualizarAtuProdMouseClicked
+        if((Integer)jTableProdutos.getModel().getValueAt(jTableProdutos.getSelectedRow(), 0) != -1){
+            atuProduto((Integer) jTableProdutos.getModel().getValueAt(jTableProdutos.getSelectedRow(), 0));
+            CardLayout cl = (CardLayout) jPanel1.getLayout();
+            cl.show(jPanel1, "atuProduto");
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um produto");
+        }         
+    }//GEN-LAST:event_btatualizarAtuProdMouseClicked
+
+    private void btcancelarAtuProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btcancelarAtuProdMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "Inicio");
+    }//GEN-LAST:event_btcancelarAtuProdMouseClicked
+
+    private void btcadastrarCadFuncMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btcadastrarCadFuncMouseClicked
+        Funcionario func = new Funcionario();
+        Comprovante_end ce = new Comprovante_end();
+        
+        func.setNome(nomeCompletoCadFunc.getText());
+        func.setCargo(cargoCadFunc.getSelectedItem().toString());
+        func.setRg(rgCadFunc.getText());
+        func.setCpf(cpfCadFunc.getText());
+        func.setDataNasc(dataNascCadFunc.getText());
+        func.setTituloEl(TituloDeEleitorCadFunc.getText());
+        func.setCartTrab(carteiraDeTrabCadFunc.getText());
+        func.setPis(pisCadFunc.getText());
+        ce.setCep(cepCadFunc.getText());
+        ce.setLogradouro(logradouroCadFunc.getText());
+        ce.setNumero(Integer.parseInt(numeroCadFunc.getText()));
+        ce.setComple(complementoCadFunc.getText());
+        ce.setCidade(cidadeCadFunc.getText());
+        ce.setBairro(bairroCadFunc.getText());
+        ce.setEstado(estadoCadFunc.getSelectedItem().toString());
+        func.setComprovante_end(ce);
+
+        TestesFuncionais tf = new TestesFuncionais();
+        
+        try {
+            if(tf.validaNumero(numeroCadFunc.getText())){
+                if(tf.validaFuncionario(func)){                
+                    Aplicativo app = new Aplicativo();
+                    app.cadFunc(func);
+                    JOptionPane.showMessageDialog(null, "Funcionario Cadastrado");
+                    limpaCamposCadFunc();
+                    carregaTabelaFuncionario();
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
+    }//GEN-LAST:event_btcadastrarCadFuncMouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        Produtos prod = new Produtos();
+        TestesFuncionais tf = new TestesFuncionais();
+        Aplicativo app = new Aplicativo();
+        
+        prod.setNome(nomeProdutoCadProd.getText());
+        prod.setQtd(Integer.parseInt(quantidadeCadProd.getText()));
+        prod.setPreco(Double.parseDouble(precoCadProd.getText()));
+        prod.setDescr(descricaoCadProd.getText());
+        
+        try {
+            if(tf.validaProduto(prod)){
+                app.cadProduto(prod);
+                JOptionPane.showMessageDialog(null, "Produto Cadastrado!");
+                limpaCamposCadProduto();
+                carregaTabelaProduto();
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void btvisProdIniMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btvisProdIniMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btvisProdIniMouseEntered
+
+    private void btvisFuncAtuFuncMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btvisFuncAtuFuncMouseClicked
+        CardLayout cl = (CardLayout) jPanel1.getLayout();
+        cl.show(jPanel1, "visFuncionario");
+        carregaTabelaFuncionario();
+    }//GEN-LAST:event_btvisFuncAtuFuncMouseClicked
+
+    private void btdelProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btdelProdutoMouseClicked
+        Integer escolha = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o produto?", "Excluir produto", JOptionPane.YES_NO_CANCEL_OPTION);
+        if(escolha==JOptionPane.YES_OPTION){
+            Aplicativo app = new Aplicativo();
+            app.delProd((Integer) jTableProdutos.getModel().getValueAt(jTableProdutos.getSelectedRow(), 0));
+            JOptionPane.showMessageDialog(null, "Produto deletado com sucesso");
+            carregaTabelaProduto();
+        }
+    }//GEN-LAST:event_btdelProdutoMouseClicked
+
+    private void btdelFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btdelFuncionarioMouseClicked
+        Integer escolha = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o funcionáiro?", "Excluir funcionário", JOptionPane.YES_NO_CANCEL_OPTION);
+        if(escolha==JOptionPane.YES_OPTION){
+            Aplicativo app = new Aplicativo();
+            app.delFunc((Integer) jTableFuncionario.getModel().getValueAt(jTableFuncionario.getSelectedRow(), 0));
+            JOptionPane.showMessageDialog(null, "Funcionario deletado com sucesso");
+            carregaTabelaFuncionario();
+        }
+    }//GEN-LAST:event_btdelFuncionarioMouseClicked
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Desktop.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Desktop.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Desktop.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Desktop.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> {
+            JFrame desk = new Desktop();
+            desk.setVisible(true);
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane JScrollPane;
+    private javax.swing.JTextField TituloDeEleitorCadFunc;
+    private javax.swing.JTextField bairroAtuFunc;
+    private javax.swing.JTextField bairroCadFunc;
+    private javax.swing.JLabel brcadastrarCadFunc;
+    private javax.swing.JLabel btatualizarAtuProd;
+    private javax.swing.JLabel btatualizarVisFunc;
+    private javax.swing.JLabel btcadFuncAtuFunc;
+    private javax.swing.JLabel btcadFuncAtuProd;
+    private javax.swing.JLabel btcadFuncCadFunc;
+    private javax.swing.JLabel btcadFuncCadProd;
+    private javax.swing.JLabel btcadFuncIni;
+    private javax.swing.JLabel btcadFuncVisFunc;
+    private javax.swing.JLabel btcadFuncVisProd;
+    private javax.swing.JLabel btcadProdAtuFunc;
+    private javax.swing.JLabel btcadProdAtuProd;
+    private javax.swing.JLabel btcadProdCadFunc;
+    private javax.swing.JLabel btcadProdIni;
+    private javax.swing.JLabel btcadProdVisFunc;
+    private javax.swing.JLabel btcadProdVisProd;
+    private javax.swing.JLabel btcadastrarCadFunc;
+    private javax.swing.JLabel btcancelarAtuFunc;
+    private javax.swing.JLabel btcancelarAtuProd;
+    private javax.swing.JLabel btcancelarCadFunc;
+    private javax.swing.JLabel btcancelarCadProd;
+    private javax.swing.JLabel btdelFuncionario;
+    private javax.swing.JLabel btdelProduto;
+    private javax.swing.JLabel btvisFuncAtuFunc;
+    private javax.swing.JLabel btvisFuncAtuProd;
+    private javax.swing.JLabel btvisFuncCadFunc;
+    private javax.swing.JLabel btvisFuncCadProd;
+    private javax.swing.JLabel btvisFuncIni;
+    private javax.swing.JLabel btvisFuncVisProd;
+    private javax.swing.JLabel btvisProdAtuFunc;
+    private javax.swing.JLabel btvisProdAtuProd;
+    private javax.swing.JLabel btvisProdCadFunc;
+    private javax.swing.JLabel btvisProdCadProd;
+    private javax.swing.JLabel btvisProdIni;
+    private javax.swing.JLabel btvisProdVisFunc;
+    private javax.swing.JComboBox<String> cargoAtuaFunc;
+    private javax.swing.JComboBox<String> cargoCadFunc;
+    private javax.swing.JTextField carteiraDeTrabAtuFunc;
+    private javax.swing.JTextField carteiraDeTrabCadFunc;
+    private javax.swing.JTextField cepAtuFunc;
+    private javax.swing.JTextField cepCadFunc;
+    private javax.swing.JTextField cidadeAtuFunc;
+    private javax.swing.JTextField cidadeCadFunc;
+    private javax.swing.JTextField complementoAtuFunc;
+    private javax.swing.JTextField complementoCadFunc;
+    private javax.swing.JFormattedTextField cpfAtuFunc;
+    private javax.swing.JFormattedTextField cpfCadFunc;
+    private javax.swing.JFormattedTextField dataNascAtuFunc;
+    private javax.swing.JFormattedTextField dataNascCadFunc;
+    private javax.swing.JScrollPane descricaoAtuProd;
+    private javax.swing.JTextArea descricaoCadProd;
+    private javax.swing.JComboBox<String> estadoAtuaFunc;
+    private javax.swing.JComboBox<String> estadoCadFunc;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelInicio;
+    private javax.swing.JPanel jPanelatuFuncionario;
+    private javax.swing.JPanel jPanelatuProduto;
+    private javax.swing.JPanel jPanelcadFuncionario;
+    private javax.swing.JPanel jPanelcadProduto;
+    private javax.swing.JPanel jPanelvisFuncionario;
+    private javax.swing.JPanel jPanelvisProduto;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableFuncionario;
+    private javax.swing.JTable jTableProdutos;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextField logradouroAtuFunc;
+    private javax.swing.JTextField logradouroCadFunc;
+    private javax.swing.JTextField nomeCompletoAtuFunc;
+    private javax.swing.JTextField nomeCompletoCadFunc;
+    private javax.swing.JTextField nomeProdAtuProd;
+    private javax.swing.JTextField nomeProdutoCadProd;
+    private javax.swing.JTextField numeroAtuFunc;
+    private javax.swing.JTextField numeroCadFunc;
+    private javax.swing.JTextField pisAtuFunc;
+    private javax.swing.JTextField pisCadFunc;
+    private javax.swing.JTextField precoAtuProd;
+    private javax.swing.JTextField precoCadProd;
+    private javax.swing.JTextField quantidadeAtuProd;
+    private javax.swing.JTextField quantidadeCadProd;
+    private javax.swing.JFormattedTextField rgAtuFunc;
+    private javax.swing.JFormattedTextField rgCadFunc;
+    private javax.swing.JTextField tituloDeEleitorAtuFunc;
+    // End of variables declaration//GEN-END:variables
+}
